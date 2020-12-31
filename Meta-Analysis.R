@@ -1,10 +1,6 @@
 rm(list=ls())
 
-<<<<<<< HEAD
 library(metafor)
-=======
-library(metfor)
->>>>>>> 7b579bf103b1377af269fa09284c41a4e0750595
 library(ape)
 #library(here)
 

@@ -21,7 +21,27 @@ dat1$phy <- dat1$animal
 dat1$obs <- 1:dim(dat1)[1]
 
 # simple model
-mod1 <- rma.mv(yi, vi, mod = ~ factor(Data.Extraction), random = list(  ~ 1 | Article,
-                                      ~ Data.Extraction | obs), 
+mod0 <- rma.mv(yi, vi, mod = ~ factor(Data.Extraction), 
+               random = list(  ~ 1 | Article, ~1 | obs), 
+               data=dat1)
+summary(mod0)
+
+AIC(mod0)
+
+# model heteroscadecity
+mod1 <- rma.mv(yi, vi, mod = ~ factor(Data.Extraction) -1, 
+               random = list(  ~ 1 | Article, ~ factor(Data.Extraction) | obs), 
+               struct="HCS",
                rho = 0, data=dat1)
 summary(mod1)
+
+mod2 <- rma.mv(yi, vi, mod = ~ factor(Data.Extraction) - 1, 
+               random = list(  ~ 1 | Article, ~ factor(Data.Extraction) | obs), 
+               struct="HCS", data=dat1)
+summary(mod2)
+
+
+mod3 <- rma.mv(yi, vi, mod = ~ factor(Data.Extraction) - 1, 
+               random = list(  ~ 1 | Article, ~ factor(Data.Extraction) | obs), 
+               struct="DIAG", data=dat1)
+summary(mod3)
