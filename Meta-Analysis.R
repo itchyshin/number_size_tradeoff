@@ -1,6 +1,6 @@
 rm(list=ls())
 
-library(metqfor)
+library(metfor)
 library(ape)
 #library(here)
 
