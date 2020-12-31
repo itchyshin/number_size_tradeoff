@@ -2,7 +2,7 @@
 
 rm(list=ls())
 
-library(metfor)
+library(metafor)
 library(ape)
 #library(here)
 
@@ -20,9 +20,8 @@ dat1 <- escalc(measure = "ZCOR", ri = dat1$r, ni = dat1$N, data = dat1)
 dat1$phy <- dat1$animal
 dat1$obs <- 1:dim(dat1)[1]
 
-mod1 <- rma.mv(yi, vi, random = list( ~ 1 | phy,
-                                      ~ 1 | animal, 
-                                      ~ 1 | Article,
-                                      ~ 1 | obs), 
-               R=list(phy = A), data=dat1)
+# simple model
+mod1 <- rma.mv(yi, vi, mod = ~ factor(Data.Extraction), random = list(  ~ 1 | Article,
+                                      ~ Data.Extraction | obs), 
+               rho = 0, data=dat1)
 summary(mod1)
