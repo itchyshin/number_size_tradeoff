@@ -44,4 +44,4 @@ summary(mod2)
 mod3 <- rma.mv(yi, vi, mod = ~ factor(Data.Extraction) - 1, 
                random = list(  ~ 1 | Article, ~ factor(Data.Extraction) | obs), 
                struct="DIAG", data=dat1)
-summary(mod3)
+summary(mod2)
