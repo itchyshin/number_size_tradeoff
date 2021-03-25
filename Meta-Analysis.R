@@ -24,7 +24,7 @@ mod1 <- rma.mv(yi, vi, random = list( ~ 1 | phy,
                                       ~ 1 | obs), 
                R=list(phy = A), data=dat1)
 summary(mod1)
-
+robust(mod1, cluster = dat1$Article)
 
 mod2 <- rma.mv(yi, vi, random = list( ~ 1 | phy,
                                       ~ 1 | Article,
